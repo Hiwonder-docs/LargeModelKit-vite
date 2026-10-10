@@ -7,7 +7,7 @@
 ```text
 docs/
 ├── index.md
-├── docs/                  # 源文档：介绍、快速开始、16 篇教学案例、软硬件指南
+├── docs/                  # 4 个章节；第三章单文件包含 16 节教学课程
 ├── _static/               # 源图片和 PDF
 ├── public/                # 图标、Logo
 └── .vitepress/            # 配置和主题
@@ -54,7 +54,7 @@ Remove-Item Env:DOCS_BASE
 
 1. `npm run build` 成功，且没有缺失资源警告。
 2. 首页跳转到 `1. Kit Introduction.html`。
-3. 侧栏包含 4 个章节和 16 篇教学案例。
+3. 侧栏包含 4 个章节，第三章的 16 节课程均跳转到合并页面内的对应标题。
 4. 图片、搜索、章节跳转和 PDF 能打开。
 5. 发布目录包含 `_static/shared/pdf/chapter_3/1.pdf`、`2.pdf` 和 `3.pdf`。
 6. 发布资源的 URL 前缀与最终站点路径一致。

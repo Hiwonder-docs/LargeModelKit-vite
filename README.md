@@ -15,14 +15,17 @@ npm run dev
 
 ## 编辑位置
 
-- `docs/docs/`：Markdown 文档，包含 16 篇教学案例。
+- `docs/docs/`：4 个章节的 Markdown 文档；第三章的 16 节课程合并在 `3. Teaching Case.md` 中。
 - `docs/_static/`：图片、PDF 等源资源。
 - `docs/index.md` 和 `docs/docs/index.md`：跳转到 Kit Introduction 的入口。
 - `docs/.vitepress/config.mts`：标题、发布路径、搜索、Markdown 配置。
-- `docs/.vitepress/autoSidebar.mts`：按章节文件和同名目录自动生成侧栏。
+- `docs/.vitepress/autoSidebar.mts`：按章节文件和同名目录自动生成侧栏；合并章节按二级标题生成页内跳转。
 - `docs/.vitepress/theme/`：页面布局、图片查看器、PDF 和反馈组件。
 
 源文档和资源必须保留并提交；启动、构建不会复制或删除这些源目录。
+
+第三章课程使用 `## 3.1 ...` 至 `## 3.16 ...` 标题，课程内的小节使用 `###` 标题。
+图片和 PDF 的相对路径统一使用 `../_static/...`，不要使用旧子目录的 `../../_static/...` 或桌面绝对路径。
 
 ## 构建和预览
 
