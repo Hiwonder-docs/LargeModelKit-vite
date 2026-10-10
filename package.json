@@ -1,9 +1,17 @@
 {
+  "name": "largemodelkit-vite",
+  "private": true,
   "scripts": {
-    "docs:dev": "vitepress dev docs",
+    "dev": "node scripts/dev_version.mjs latest",
+    "build": "npm run build:latest",
+    "preview": "npm run docs:preview",
+    "docs:dev": "node scripts/dev_version.mjs latest",
+    "dev:latest": "node scripts/dev_version.mjs latest",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "docs:stage-main": "node scripts/stage_main_site.mjs"
+    "docs:stage-main": "node scripts/stage_main_site.mjs",
+    "build:latest": "node scripts/build_version.mjs latest",
+    "build:all": "npm run build:latest"
   },
   "dependencies": {
     "vitepress": "^1.6.4"
