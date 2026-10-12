@@ -418,9 +418,29 @@ function resolveLocalImagePath(markdownId: string, src: string) {
   return path.resolve(path.dirname(markdownId), cleanSrc)
 }
 
+function reserveImageAspectRatio(tag: string) {
+  const width = getNumericHtmlAttribute(tag, 'width')
+  const height = getNumericHtmlAttribute(tag, 'height')
+  const style = getHtmlAttribute(tag, 'style') || ''
+
+  if (!width || !height || /(?:^|;)\s*aspect-ratio\s*:/i.test(style)) {
+    return tag
+  }
+
+  // Reserve the real image ratio even while src is the lazy SVG placeholder.
+  const ratio = `aspect-ratio:${width} / ${height};`
+  const stylePattern = /\sstyle=(["'])(.*?)\1/i
+  if (stylePattern.test(tag)) {
+    return tag.replace(stylePattern, (_match, quote, value) =>
+      ` style=${quote}${value};${ratio}${quote}`
+    )
+  }
+  return tag.replace('<img', `<img style="${ratio}"`)
+}
+
 function addImageDimensionsToTag(tag: string, markdownId: string) {
   if (hasAttribute(tag, 'width') && hasAttribute(tag, 'height')) {
-    return tag
+    return reserveImageAspectRatio(tag)
   }
 
   const src = getHtmlAttribute(tag, 'src') || getHtmlAttribute(tag, 'data-lazy-src')
@@ -455,7 +475,7 @@ function addImageDimensionsToTag(tag: string, markdownId: string) {
     preparedTag = preparedTag.replace('<img', `<img height="${height}"`)
   }
 
-  return preparedTag
+  return reserveImageAspectRatio(preparedTag)
 }
 
 function reserveLocalImageDimensions() {
